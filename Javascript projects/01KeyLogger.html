@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 50px;
+        }
+        body{
+            background-color: black;
+            color: white;
+        
+        }
+
+        #log ,#state{
+            width: 300px;
+            height:30px;
+            margin: 5px;
+            border: 1px solid white;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: coral;
+            border-radius: 10px;
+        }
+
+        .button-container{
+            display: flex;
+            flex-direction: row;
+        }
+        button{
+        font-size: 20px;
+        margin: 10px 20px ;
+        margin-right: 20px;
+        border-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="border: 2px solid white; padding: 2px ; border-radius:5px; ">Key Logger</h1>
+        <p> Here a key Logger </p>
+        <div class="button-container">
+          <button id="startBtn">Start logging key press</button>
+          <button id="stopBtn">Stop logging key press</button>
+        </div>
+        <div class="button-container">
+            <div id="log"></div>
+            <div id="state"></div>
+        </div>
+    </div>
+
+    <script>
+        const logDiv = document.getElementById("log");
+        const stateDiv = document.getElementById("state");
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+
+        startBtn.addEventListener("click", ()=>{
+            document.addEventListener("keydown",handleDown)
+            document.addEventListener("keyup",handleUp)
+            startBtn.disabled = true;
+            stopBtn.disabled= false;
+        })
+
+        stopBtn.addEventListener("click", ()=>{
+            document.removeEventListener("keydown",handleDown)
+            document.removeEventListener("keyup",handleUp)
+            logDiv.textContent = "";
+            stateDiv.textContent = "";
+            startBtn.disabled = false;
+            stopBtn.disabled= true;
+        })
+
+function handleDown(event){
+    logDiv.textContent `Key ${event.key} pressed Down`;
+    stateDiv.textContent = "Key is Down";
+}
+
+function handleUp(event){
+    logDiv.textContent = `Key ${event.key} pressed Up`;
+    stateDiv.textContent = "Key is Up";
+}
+
+    </script>
+
+</body>
+</html>

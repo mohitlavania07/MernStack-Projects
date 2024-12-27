@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="btn"></div>
+    <div id="gallery"></div>
+
+    <form id="my-form" action="">
+      <input type="text" name="search" id="search" placeholder="Search..." />
+      <input type="email" name="email" required />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <ul id="myList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <h1>Motivational Quotes</h1>
+    <div id="quoteDisplay">Loading...</div>
+    
+    <script>
+      let str = "Mohit Lavania";
+      function reverseString(str) {
+        return str.split("").reverse().join("");
+      }
+      console.log(reverseString(str));
+
+      function checkEvenOrOdd(num) {
+        if (num % 2 == 0) {
+          return "Even";
+        } else {
+          return "Odd";
+        }
+      }
+      console.log(checkEvenOrOdd(5));
+
+      const container = document.getElementById("btn");
+      const button = document.createElement("button");
+      button.innerHTML = "Click Me";
+      container.appendChild(button);
+
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        alert("Hello Mohit Lavania");
+      });
+
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      console.log(random(50, 100));
+
+      function remove(arr, target) {
+        return arr.filter((item) => item !== target);
+      }
+      let arr = [10, 20, 30, 10];
+      let target = 10;
+
+      console.log(remove(arr, target));
+
+      function fibonacci(n) {
+        if (n <= 1) {
+          return n;
+        } else {
+          return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+      }
+      console.log(fibonacci(6));
+
+      function factorial(n) {
+        if (n <= 1) {
+          return n;
+        } else {
+          return n * factorial(n - 1);
+        }
+      }
+      console.log(factorial(5));
+
+      function clouser() {
+        let a = 10;
+        return function () {
+          return ++a;
+        };
+      }
+      let counter = clouser();
+      console.log(counter());
+      console.log(counter());
+
+      function apiCall(url, callback) {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => callback(data))
+          .catch((err) => console.log(error));
+      }
+      function handleData(data) {
+        console.log("Proccessed Data", data);
+      }
+      function main() {
+        const api1 = "https://jsonplaceholder.typicode.com/posts/1";
+        const api2 = "https://jsonplaceholder.typicode.com/posts/2";
+
+        apiCall(api1, handleData);
+        apiCall(api2, handleData);
+      }
+      main();
+
+      function apiCallPromise(url) {
+        return fetch(url).then((response) => response.json());
+      }
+      function handledata1(data) {
+        console.log("Data proccessed", data);
+      }
+      function main1() {
+        const api3 = "https://jsonplaceholder.typicode.com/posts/1";
+        const api4 = "https://jsonplaceholder.typicode.com/posts/2";
+
+        apiCallPromise(api3)
+          .then((data) => console.log(data))
+          .catch((err) => console.log("err"));
+        apiCallPromise(api4)
+          .then(handledata1)
+          .catch((err) => console.log("err"));
+      }
+      main1();
+
+      async function fetchData(url) {
+        let response = await fetch(url);
+        try {
+          if (!response.ok) {
+            throw new Error("Error");
+          }
+          return await response.json();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchData("https://jsonplaceholder.typicode.com/posts/2").then((data) =>
+        console.log("Fetchdata", data)
+      );
+
+      function createImageElement(src) {
+        const img = document.createElement("img");
+        img.src = src;
+        return img;
+      }
+
+      let gallery = document.getElementById("gallery");
+      let imageUrl = ["https://picsum.photos/200/300"];
+
+      imageUrl.forEach((url) => gallery.appendChild(createImageElement(url)));
+
+
+      function validationForm() {
+        const form = document.getElementById("my-form");
+        if (form.checkValidity()) {
+          alert("Form is valid");
+        } else {
+          alert("Form is invalid");
+        }
+      }
+      const form = document.getElementById("my-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        validationForm();
+      });
+
+
+    const myList = document.getElementById("myList");
+
+    myList.addEventListener("click",(e)=>{
+      let clickedItem = e.target;
+      if(clickedItem.tagName === 'LI'){
+        console.log("MyList Item Clicked", clickedItem.textContent)
+      }else{
+        console.log("Other List Item Clicked",)
+      }
+    })
+
+    const quotes =["Many of life’s failures are people who did not realize how close they were to success when they gave up.",
+    "Never let the fear of striking out keep you from playing the game",
+    "Don’t settle for what life gives you; make life better and build something",
+    "I believe every human has a finite number of heartbeats. I don't intend to waste any of mine",
+    "The best way to predict your future is to create it",
+    "If you want to live a happy life, tie it to a goal, not to people or things",
+    "You must expect great things of yourself before you can do them"]
+
+    function quotesDisplay(){
+      let quote = document.getElementById("quoteDisplay");
+      let random = Math.floor(Math.random()*quotes.length)
+      quote.textContent = quotes[random]
+    }
+    quotesDisplay();
+
+    function setDiaply(){
+     quotesDisplay()
+     setTimeout(setDiaply,2000)
+    }
+    setDiaply()
+
+
+     const person ={
+      name: "John",
+      age: 30,
+      hobbies: ["Sports","Cooking"],
+      address: {
+        city: "Boston",
+        state: "MA"
+        }
+     }
+     var {name,...age} = person;
+     console.log(name)
+     console.log(age)
+
+     class Book{
+constructor(title,author,year){
+  this.title = title;
+  this.author = author;
+  this.year = year;
+}
+getAge(){
+  const currentAge = new Date().getFullYear();
+  return currentAge - this.year;
+}
+     }
+
+     const Book1 = new Book("The Alchemist", "Paulo Coelho",2000)
+     console.log(Book1.title)
+     console.log(Book1.author)
+     console.log(Book1.year)
+     console.log(Book1.getAge())
+
+
+     
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https:/unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .banner {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: cente;
+      min-height: 100vh;
+      padding: 100px;
+      background: #fff;
+      transition: 0.5s;
+    }
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 100px;
+      align-items: center;
+    }
+    header .logo {
+      color: #333;
+      font-size: 2em;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.5s;
+    }
+    span {
+      color: orange;
+      font-size: 2em;
+    }
+    header ul {
+      display: flex;
+      gap: 40px;
+    }
+    header ul li {
+      list-style: none;
+    }
+    header ul li a {
+      font-weight: 500;
+      text-decoration: none;
+      color: #333;
+      transition: 0.5s;
+      font-size: 1.2 rem;
+    }
+    .content {
+      position: relative;
+      max-width: 700px;
+    }
+    .content h2{
+      font-size: 5.5rem;
+      color: #333;
+      transition: 0.5s;
+    }
+    .content h2 span{
+        color: orange;
+    }
+    .content p{
+        font-size: 1.2rem;
+        color: #666;
+        margin: 10px 0;
+        transition: 0.5s;     
+    }
+.content button{
+    position: relative;
+    background: orange;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    margin-right: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.content button.chat{
+    background-color: transparent;
+    color: #333;
+    font-weight: 700;
+}
+.dayNight{
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 2em;
+}
+.dayNight i:nth-child(2),
+.banner.night .dayNight i:nth-child(1)
+{
+  display: none;
+}
+.banner.night .dayNight i:nth-child(2){
+  display: block;
+}
+.banner.night{
+  background: #333;
+}
+.banner.night .dayNight{
+  color: #fff;
+  background: #444;
+}
+.banner.night header .logo,
+.banner.night .content h2,
+.banner.night .content p,
+.banner.night .content button.chat,
+.banner.night  header ul li a{
+  color: #fff;
+}
+
+
+  </style>
+  <body>
+    <section class="banner">
+      <header>
+        <a href="#" class="logo">Drop <span>X</span> Out</a>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </header>
+
+      <div class="content">
+        <h2>I am <span id="text"></span></h2>
+        <p>Let's break the matrix</p>
+        <button>Join us</button>
+        <button class="chat">Let's Chat</button>
+      </div>
+
+      <div class="dayNight">
+        <i class="fa-solid fa-moon"></i>   
+        <i class="fa-solid fa-bolt-lightning"></i>
+      </div>
+    </section>
+
+<script>
+let dayNight = document.querySelector(".dayNight");
+let banner = document.querySelector(".banner");
+
+dayNight.addEventListener("click", ()=>{
+  banner.classList.toggle("night");
+})
+
+let typing = new Typed("#text", {
+  strings:["Developer", "Coder", "Designer","Computer Programmer","Software Engineer" ],
+  loop:true,
+  typeSpeed:100,
+  backSpeed:50,
+  backDelay:1000
+})
+
+</script>
+  </body>
+</html>
